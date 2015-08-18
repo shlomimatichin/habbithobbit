@@ -3,9 +3,12 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(leve
 from habbithobbit import recorder
 from habbithobbit import recordwindow
 from habbithobbit import recordcomputersleeps
+from habbithobbit import recordscreenlocks
 #from habbithobbit import recorddesktopnotifications
 import argparse
 import time
+import signal
+import sys
 
 
 parser = argparse.ArgumentParser()
@@ -15,6 +18,12 @@ args = parser.parse_args()
 recorderInstance = recorder.Recorder(args.output)
 recordWindow = recordwindow.RecordWindow(recorderInstance)
 recordComputerSleeps = recordcomputersleeps.RecordComputerSleeps(recorderInstance)
+recordScreenLocks = recordscreenlocks.RecordScreenLocks(recorderInstance)
 #recordDesktopNotifications = recorddesktopnotifications.RecordDesktopNotifications(recorderInstance)
 
-time.sleep(100000)
+def exitHandler():
+    sys.exit()
+signal.signal(signal.SIGTERM, exitHandler)
+signal.signal(signal.SIGINT, exitHandler)
+
+time.sleep(1000000)
