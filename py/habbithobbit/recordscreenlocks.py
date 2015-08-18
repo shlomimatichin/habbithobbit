@@ -1,12 +1,12 @@
-from habbithobbit import gdbussubprocess
+from habbithobbit import linesubprocess
 import dbus
 
 
 class RecordScreenLocks:
     def __init__(self, recorder):
         self._recorder = recorder
-        self._gdbusSubprocess = gdbussubprocess.GdbusSubprocess(
-            ["monitor", "-e", "-d", "com.canonical.Unity", "-o", "/com/canonical/Unity/Session"],
+        self._gdbusSubprocess = linesubprocess.LineSubprocess(
+            ["gdbus", "monitor", "-e", "-d", "com.canonical.Unity", "-o", "/com/canonical/Unity/Session"],
             self._onLine)
 
     def _onLine(self, line):

@@ -4,6 +4,7 @@ from habbithobbit import recorder
 from habbithobbit import recordwindow
 from habbithobbit import recordcomputersleeps
 from habbithobbit import recordscreenlocks
+from habbithobbit import recordmouseactivity
 #from habbithobbit import recorddesktopnotifications
 import argparse
 import time
@@ -19,6 +20,7 @@ recorderInstance = recorder.Recorder(args.output)
 recordWindow = recordwindow.RecordWindow(recorderInstance)
 recordComputerSleeps = recordcomputersleeps.RecordComputerSleeps(recorderInstance)
 recordScreenLocks = recordscreenlocks.RecordScreenLocks(recorderInstance)
+recordMouseActivity = recordmouseactivity.RecordMouseActivity(recorderInstance)
 #recordDesktopNotifications = recorddesktopnotifications.RecordDesktopNotifications(recorderInstance)
 
 def exitHandler():
