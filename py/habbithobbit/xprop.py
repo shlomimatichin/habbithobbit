@@ -18,7 +18,10 @@ class Window:
 
     def name(self):
         output = run.run(["xprop", "-id", self._id, "_NET_WM_NAME"])
-        return re.search(r'"(.*)"', output).group(1)
+        match = re.search(r'"(.*)"', output)
+        if match is None:
+            return None
+        return match.group(1)
 
     def pid(self):
         if self._cachedPid is None:
