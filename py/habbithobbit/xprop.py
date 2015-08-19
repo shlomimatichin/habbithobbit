@@ -26,7 +26,11 @@ class Window:
     def pid(self):
         if self._cachedPid is None:
             output = run.run(["xprop", "-id", self._id, "32c", r'\t$0', "_NET_WM_PID"])
-            self._cachedPid = int(output.strip().split('\t')[1])
+            split = output.strip().split('\t')
+            if len(split) == 0:
+                return None
+            else:
+                self._cachedPid = int(split[1])
         return self._cachedPid
 
     def executable(self):

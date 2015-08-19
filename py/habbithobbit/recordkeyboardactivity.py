@@ -13,6 +13,6 @@ class RecordKeyboardActivity:
     def _onLine(self, line):
         now = 'True' in line
         if now != self._last:
-            event = dict(type="keyboard activity", active=now)
+            event = dict(type="keyboard", active=now)
             self._recorder.record(event)
             self._last = now

@@ -13,6 +13,6 @@ class RecordMouseActivity:
     def _onLine(self, line):
         now = 'Movement detected' in line
         if now != self._last:
-            event = dict(type="mouse activity", active=now)
+            event = dict(type="mouse", active=now)
             self._recorder.record(event)
             self._last = now
